@@ -1,6 +1,15 @@
 import random
 
-board = ['0' for x in range(10)]
+board = [' ' for x in range(10)]
+
+#check the space is free or not
+def spaceIsFree(position):
+	return board[position] == ' '
+
+def insertBoard(letter, position):
+	global board
+	board[position] = letter
+	
 
 #draw the board
 def drawBoard(board):
@@ -42,26 +51,64 @@ def isWinner(board, letter):
 		(board[3] == letter and board[5] == letter and board[7] == letter)
 		)
 
-def palyerMove():
 
-	pass
 
-def compMove():
-	pass
+def playerMove(letter):
+	move = input('Please select a position to place ~ (1~9) ')
+	try:
+		move = int(move)
+		if move > 0 and move < 10:
+			if spaceIsFree(move):
+				run = False
+				insertBoard(letter,move)
+			else:
+				print('This position is already occupied!')
+		else:
+			print('Please type a number within the range!')
+	except:
+		print('Please type a number!')
+
+
 
 def selectRandom(board):
 	pass
 
-def isBoardFull(board):
+def isBoardFull(board):#judge the board is full or not
+
 	if board.count(' ') > 1:
 		return False
 	else:
 		return True
 
 def main():
-	pass
+	insertPlayerLetter()
+	drawBoard(board)
+	while not(isBoardFull(board)):
+		if (isWinner(board,'X')):
+			print('X win this time ~')
+			break
+		else:
+			playerMove('O')
+			drawBoard(board)
+
+
+		if (isWinner(board,'O')):
+			print('O win this time ~')
+			break
+
+		else:
+			playerMove('X')
+			drawBoard(board)
 
 main()
 
-insertPlayerLetter();
-drawBoard(board)
+while True:
+	answer = input('Do you want to play again ? (Y/N)')
+	if answer.lower() == 'y' or answer.lower() == 'yes':
+		board = [' ' for x in range(10)]
+		print('-------- next round -------')
+		main()
+	else:
+		break
+
+
