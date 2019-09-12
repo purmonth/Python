@@ -9,7 +9,7 @@ x = tf.placeholder(dtype=tf.float32, shape=[None,784], name='x')
 #labels
 y = tf.placeholder(dtype=tf.float32, shape=[None,10], name='y')
 
-batch_size = 1000
+batch_size = 100
 
 def add_layer(input_data, input_num, output_num, activation_function=None):
 	#output = input_data * weight + bias
@@ -38,10 +38,10 @@ def train_nn(data):
 
 	with tf.Session() as sess:
 		sess.run(tf.global_variables_initializer())
-		for i in range(50):
+		for i in range(500):
 			epoch_cost = 0
 			for _ in range(int(mnist.train.num_examples / batch_size)):
-				x_data, y_data = mnist.train.next_batch(batch_size)
+				x_data, y_data = mnist.train. next_batch(batch_size)
 				cost, _ = sess.run([loss, optimizer], feed_dict={x: x_data, y: y_data})
 				epoch_cost += cost
 			print('Epoch', i, ': ', epoch_cost)
