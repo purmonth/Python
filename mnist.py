@@ -33,12 +33,12 @@ def train_nn(data):
 	output = build_nn(data)
 
 	loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y, logits=output))
-	optimizer = tf.train.GradientDescentOptimizer(learning_rate=1).minimize(loss)
+	optimizer = tf.train.GradientDescentOptimizer(learning_rate=1).minimize(loss) 
 
 
 	with tf.Session() as sess:
 		sess.run(tf.global_variables_initializer())
-		for i in range(500):
+		for i in range(50):
 			epoch_cost = 0
 			for _ in range(int(mnist.train.num_examples / batch_size)):
 				x_data, y_data = mnist.train. next_batch(batch_size)
