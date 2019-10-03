@@ -77,9 +77,7 @@ loss_func = nn.CrossEntropyLoss()   # the target label is not one-hotted
 input_shape = (-1,1,28,28)
 
 
-#training model
 def fit_model(model, loss_func, optimizer, input_shape, num_epochs, train_loader, test_loader):
-    # Traning the Model
     #history-like list for store loss & acc value
     training_loss = []
     training_accuracy = []
@@ -141,21 +139,4 @@ def fit_model(model, loss_func, optimizer, input_shape, num_epochs, train_loader
 
 
 training_loss, training_accuracy, validation_loss, validation_accuracy = fit_model(model, loss_func, optimizer, input_shape, num_epochs, train_loader, test_loader)
-
-# visualization
-plt.plot(range(num_epochs), training_loss, 'b-', label='Training_loss')
-plt.plot(range(num_epochs), validation_loss, 'g-', label='validation_loss')
-plt.title('Training & Validation loss')
-plt.xlabel('Number of epochs')
-plt.ylabel('Loss')
-plt.legend()
-plt.show()
-plt.plot(range(num_epochs), training_accuracy, 'b-', label='Training_accuracy')
-plt.plot(range(num_epochs), validation_accuracy, 'g-', label='Validation_accuracy')
-plt.title('Training & Validation accuracy')
-plt.xlabel('Number of epochs')
-plt.ylabel('Accuracy')
-plt.legend()
-plt.show()
-
 
