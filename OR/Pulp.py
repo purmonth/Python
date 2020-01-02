@@ -62,6 +62,7 @@ Lp_prob += X30+X31+X32+X33+X34+X35+X36 <= 8
 #Lp_prob += x >= 4
 #Lp_prob += y <= 3
   
+  
 # Display the problem 
 print(Lp_prob) 
   
